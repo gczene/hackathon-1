@@ -33,10 +33,12 @@ app.get('/info/*?', function (req, res, next) {
         if (err) {
           next(err);
         } else {
-          console.log(config.backHost);
+          console.log(config.bgHost);
           if (typeof bgResponse.body.userNeedsSupplementary === 'string') {
             bgResponse.body.userNeedsSupplementary = [bgResponse.body.userNeedsSupplementary];
           }
+          console.log('bgResponse.body.userNeedsSupplementary');
+          console.log(bgResponse.body.userNeedsSupplementary);
           // bgResponse.body.userNeedsSupplementary = ['adsadsa', 'b dsa'];
           // bgResponse.body.userNeed = 'dsadsa ds dsada dsa';
           res.render('index', {
