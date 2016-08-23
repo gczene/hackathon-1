@@ -1,10 +1,36 @@
 doctype html
 html
   head
+    link(rel="stylesheet" href="https://www.britishgas.co.uk/aem6/etc/designs/britishgas/clientlib.min.css")
+    link(rel="stylesheet" href="https://www.britishgas.co.uk/aem6/content/dam/britishgas/ember-aem-components/020816/vendor-1f900921bbc95e1fb60655ba22aae874.css")
+    link(rel="stylesheet" type="text/css" href="https://www.britishgas.co.uk/aem6/content/dam/britishgas/ember-aem-components/020816/ember-aem6-components-5a9d6d15706f4fb785cedbc5847d8c7b.css")
+    link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.css")
+    script(type="text/javascript" src="https://www.britishgas.co.uk/aem6/content/dam/britishgas/ember-aem-components/020816/vendor-477ba0ebde6e95a832b7fe8f54ae5d85.js")
+    script(type="text/javascript" src="https://www.britishgas.co.uk/aem6/content/dam/britishgas/ember-aem-components/020816/ember-aem6-components-3af61f23e53ff3a637b724e20776212c.js")
     link(rel="stylesheet" href="/style.css")
-  body
-    h2= title
-    div= text
-    div
-      a(href=backlink).
-        back
+  body.custom-bg-1.bgcss
+    div#bg-header(data-component="bg-header")
+    .container
+      .row
+        .col-xs-12
+          h2.text-center= title
+          h3 Primary User Need
+          if userNeed
+            .mb5!= userNeed
+          else
+            .mb5.
+              A primary user need for this page has not yet identified or validated with our users
+
+          if userNeedsSupplementary
+            h3 Secondary User Need
+            ul
+              each item in userNeedsSupplementary
+                li
+                  span.blue-circle!= item
+
+          div.mb5
+            a.btn.btn-aem.btn-primary(role="button", href=backlink).
+              #[i.fa.fa-angle-right]
+              back
+    include ./partials/description.pug
+    div#bg-footer(data-component="bg-footer")

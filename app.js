@@ -3,7 +3,8 @@ var express = require('express'),
   port = process.env.PORT || 3000,
   request = require('superagent');
 
-const host = 'https://www.britishgas.co.uk/';
+const host = 'http://172.29.23.116:4502/',
+  pattern = 'content/britishgas/##path##/jcr:content.json';
 
 app.set('view engine', 'pug');
 
@@ -20,18 +21,25 @@ app.get('/info/*?', function (req, res, next) {
   if (!path) {
     next('no get params');
   } else {
-    let url = `${host}${path}`;
+    let url = host + pattern.replace('##path##', path);
 
     request.get(url)
-      .end((err, r) => {
-        console.log(r);
+      .end((err, bgResponse) => {
+        if (typeof bgResponse.body.userNeedsSupplementary === 'string') {
+          bgResponse.body.userNeedsSupplementary = [bgResponse.body.userNeedsSupplementary];
+        }
         if (err) {
           next(err);
         } else {
+          // bgResponse.body.userNeedsSupplementary = ['a', 'b'];
+          // bgResponse.body.userNeed = 'dsadsa ds dsada dsa';
           res.render('index', {
-            title: 'my title dsadsa',
-            text: 'my text',
-            backlink: host + path
+            title: bgResponse.body.pageTitle || bgResponse.body['jcr:title'],
+            userNeed: bgResponse.body.userNeed || '',
+            approver: bgResponse.body.approver,
+            approveDate: bgResponse.body.approveDate,
+            userNeedsSupplementary: bgResponse.body.userNeedsSupplementary,
+            backlink: host + 'content/britishgas/' + path + '.html'
           });
         }
       });
@@ -42,7 +50,7 @@ app.get('/info/*?', function (req, res, next) {
 
 app.use((err, req, res, next) => {
   console.error(err.toString());
-  res.send('error happened');
+  res.render('error', {});
 });
 
 app.listen(port, function () {
