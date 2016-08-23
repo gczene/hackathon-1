@@ -1,15 +1,16 @@
 var express = require('express'),
   app = express(),
   port = process.env.PORT || 3000,
-  request = require('superagent');
+  environment = require('./config').environment,
+  request = require('superagent'),
+  config = require('./config');
 
-const host = 'http://172.29.23.116:4502/',
+const host = config.bgHost,
   pattern = 'content/britishgas/##path##/jcr:content.json';
 
 app.set('view engine', 'pug');
 
 app.use(express.static('public'));
-
 
 app.get('/info/', function (req, res) {
   res.render('default', {});
@@ -54,5 +55,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(port, function () {
-  console.log('server started on ' + port);
+  console.log('server started on ' + port + environment);
 });
