@@ -13,6 +13,7 @@ module.exports = {
   },
   rules: {
     eqeqeq: 'error',
+    'no-console': 'off',
     'no-debugger': 'error',
     'no-dupe-args': 'error',
     'no-dupe-keys': 'error',
