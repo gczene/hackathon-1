@@ -37,7 +37,7 @@ app.get('/info/*?', function (req, res, next) {
           if (typeof bgResponse.body.userNeedsSupplementary === 'string') {
             bgResponse.body.userNeedsSupplementary = [bgResponse.body.userNeedsSupplementary];
           }
-          // bgResponse.body.userNeedsSupplementary = ['a', 'b'];
+          // bgResponse.body.userNeedsSupplementary = ['adsadsa', 'b dsa'];
           // bgResponse.body.userNeed = 'dsadsa ds dsada dsa';
           res.render('index', {
             title: bgResponse.body.pageTitle || bgResponse.body['jcr:title'],

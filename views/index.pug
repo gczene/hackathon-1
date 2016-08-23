@@ -14,16 +14,18 @@ html
       .row
         .col-xs-12
           h2.text-center.mt10= title
-          h3 Primary User Need
+          div.
+            The following user needs are referring to this page: #[a(href=backlink) #{backlink}]
+          h3.mt5 Primary User Need
           if userNeed
-            .mb5!= userNeed
+            .mb5.alert!= userNeed
           else
-            .mb5.
+            .mb5.alert.
               A primary user need for this page has not yet identified or validated with our users
 
           if userNeedsSupplementary
             h3 Secondary User Need
-            ul
+            ul.alert.alert-danger
               each item in userNeedsSupplementary
                 li
                   span.blue-circle!= item
