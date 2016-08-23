@@ -13,7 +13,7 @@ html
     .container
       .row
         .col-xs-12
-          h2.text-center= title
+          h2.text-center.mt10= title
           h3 Primary User Need
           if userNeed
             .mb5!= userNeed
@@ -33,4 +33,4 @@ html
               #[i.fa.fa-angle-right]
               back
     include ./partials/description.pug
-    div#bg-footer(data-component="bg-footer")
+    div#bg-footer.mt20(data-component="bg-footer")
