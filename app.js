@@ -12,6 +12,8 @@ app.set('view engine', 'pug');
 
 app.use(express.static('public'));
 
+app.get('/api/content/desktop-header', require('./menu/desktop'));
+
 app.get('/info/', function (req, res) {
   res.render('default', {});
 });
