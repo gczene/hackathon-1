@@ -26,7 +26,7 @@ app.get('/info/*?', function (req, res, next) {
   if (!path) {
     next('no get params');
   } else {
-    let url = host + pattern.replace('##path##', path);
+    let url = host + pattern.replace('##path##', path) + '?i=' + Math.random();
 
     request.get(url)
       .end((err, bgResponse) => {
