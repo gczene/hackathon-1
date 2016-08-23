@@ -5,6 +5,8 @@ var express = require('express'),
   request = require('superagent'),
   config = require('./config');
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
 const host = config.bgHost,
   pattern = 'content/britishgas/##path##/jcr:content.json';
 
