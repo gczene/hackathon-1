@@ -26,12 +26,12 @@ app.get('/info/*?', function (req, res, next) {
 
     request.get(url)
       .end((err, bgResponse) => {
-        if (typeof bgResponse.body.userNeedsSupplementary === 'string') {
-          bgResponse.body.userNeedsSupplementary = [bgResponse.body.userNeedsSupplementary];
-        }
         if (err) {
           next(err);
         } else {
+          if (typeof bgResponse.body.userNeedsSupplementary === 'string') {
+            bgResponse.body.userNeedsSupplementary = [bgResponse.body.userNeedsSupplementary];
+          }
           // bgResponse.body.userNeedsSupplementary = ['a', 'b'];
           // bgResponse.body.userNeed = 'dsadsa ds dsada dsa';
           res.render('index', {
