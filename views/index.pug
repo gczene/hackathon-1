@@ -25,10 +25,8 @@ html
 
           if userNeedsSupplementary
             h3 Secondary User Need
-            ul.alert.alert-danger
-              each item in userNeedsSupplementary
-                li
-                  span.blue-circle!= item
+            each item in userNeedsSupplementary
+              div.alert.alert-danger!= item
 
           div.mb5
             a.btn.btn-aem.btn-primary(role="button", href=backlink).
