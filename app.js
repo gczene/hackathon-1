@@ -33,6 +33,7 @@ app.get('/info/*?', function (req, res, next) {
         if (err) {
           next(err);
         } else {
+          console.log(config.backHost);
           if (typeof bgResponse.body.userNeedsSupplementary === 'string') {
             bgResponse.body.userNeedsSupplementary = [bgResponse.body.userNeedsSupplementary];
           }
@@ -44,7 +45,7 @@ app.get('/info/*?', function (req, res, next) {
             approver: bgResponse.body.approver,
             approveDate: bgResponse.body.approveDate,
             userNeedsSupplementary: bgResponse.body.userNeedsSupplementary,
-            backlink: host + 'content/britishgas/' + path + '.html'
+            backlink: config.backHost + 'content/britishgas/' + path + '.html'
           });
         }
       });
