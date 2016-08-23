@@ -4,7 +4,7 @@ var environment = process.env.ENVIRONMENT || 'development',
 
 switch (environment) {
 case 'staging':
-  backHost = 'https://www.britishgas.co.uk/';
+  backHost = 'https://193.67.163.48/';
   bgHost = 'https://193.67.163.48/';
   break;
 case 'development':
