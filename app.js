@@ -33,20 +33,24 @@ app.get('/info/*?', function (req, res, next) {
         if (err) {
           next(err);
         } else {
-          console.log(config.bgHost);
-          if (typeof bgResponse.body.userNeedsSupplementary === 'string') {
-            bgResponse.body.userNeedsSupplementary = [bgResponse.body.userNeedsSupplementary];
+          let {
+            userNeedsSupplementary,
+            pageTitle,
+            userNeed,
+            approver,
+            approveDate
+          } = bgResponse.body;
+
+          if (typeof userNeedsSupplementary === 'string') {
+            userNeedsSupplementary = [userNeedsSupplementary];
           }
-          console.log('bgResponse.body.userNeedsSupplementary');
-          console.log(bgResponse.body.userNeedsSupplementary);
-          // bgResponse.body.userNeedsSupplementary = ['adsadsa', 'b dsa'];
-          // bgResponse.body.userNeed = 'dsadsa ds dsada dsa';
+
           res.render('index', {
-            title: bgResponse.body.pageTitle || bgResponse.body['jcr:title'],
-            userNeed: bgResponse.body.userNeed || '',
-            approver: bgResponse.body.approver,
-            approveDate: bgResponse.body.approveDate,
-            userNeedsSupplementary: bgResponse.body.userNeedsSupplementary,
+            title: pageTitle || bgResponse.body['jcr:title'],
+            userNeed: userNeed || '',
+            approver,
+            approveDate,
+            userNeedsSupplementary,
             backlink: config.backHost + 'content/britishgas/' + path + '.html'
           });
         }
